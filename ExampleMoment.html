@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Moment.js</title>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
+
+<body>
+  <script>
+
+    // Assumptions
+    var tFrequency = 3;
+
+    // Time is 5:30 AM
+    var firstTime = "05:30";
+
+    // First Time
+    var firstTimeConverted = moment(firstTime, "hh:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    // The Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Train Times Apart
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+
+    // Minutes Until Train Arrives
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train Arriving
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
+
+  </script>
+</body>
+</html>
